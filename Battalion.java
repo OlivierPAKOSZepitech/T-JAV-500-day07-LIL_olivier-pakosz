@@ -18,18 +18,28 @@ public class Battalion<T extends Character> {
         }
     }
 
-    public static void main(String[] args) {
-        List<Mage> mages = new ArrayList<>();
-        mages.add(new Mage("Merlin"));
-        mages.add(new Mage("Mandrake"));
+    public boolean fight() {
+        if (characters.size() < 2) {
+            return false;
+        }
+        else {
+            T first = characters.get(0);
+            T second = characters.get(1);
+            int result = first.compareTo(second);
+            if (result > 0) {
+                characters.remove(1);
+            }
+            else if (result == 0) {
+                characters.remove(0);
+                characters.remove(0);
+            }
+            
+            else {
+                characters.remove(0);
+            }
 
-        List<Warrior> warriors = new ArrayList<>();
-        warriors.add(new Warrior("Spartacus"));
-        warriors.add(new Warrior("Clovis"));
-
-        Battalion<Character> battalion = new Battalion<>();
-        battalion.add(mages);
-        battalion.add(warriors);
-        battalion.display();
+            return true;
+        }
+    
     }
 }
