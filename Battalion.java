@@ -8,12 +8,12 @@ public class Battalion<T extends Character> {
         characters = new ArrayList<>();
     }
 
-    public void add(List<? extends T> newCharacters) {
+    public void add(List<T> newCharacters) {
         characters.addAll(newCharacters);
     }
 
     public void display() {
-        for (T character : characters) {
+        for (Character character : characters) {
             System.out.println(character.getName());
         }
     }
