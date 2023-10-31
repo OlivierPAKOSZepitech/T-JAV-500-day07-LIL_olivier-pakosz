@@ -1,10 +1,11 @@
 public class Mage extends Character {
-    public Mage(String name) {
+    public Mage(String name, int magnetism) {
         super(name, "Mage");
         this.life = 70;
         this.strength = 3;
         this.agility = 10;
         this.wit = 10;
+        this.capacity = magnetism;
         System.out.println(name + ": May the gods be with me.");
     }
 
