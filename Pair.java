@@ -1,23 +1,24 @@
-public class Pair <T, V> {
+public class Pair<T, V> {
 
-    private T first;    
-    private V second;
+  private T first;
 
+  private V second;
 
-    public T getFirst() {
-        return first;
-    }
+  public Pair(T first, V second) {
+    this.first = first;
+    this.second = second;
+  }
 
-    public V getSecond() {
-        return second;
-    }
+  public T getFirst() {
+    return first;
+  }
 
-    public Pair(T first, V second) {
-        this.first = first;
-        this.second = second;
-    }
+  public V getSecond() {
+    return second;
+  }
 
-    public void display() {
-        System.out.println("first: " + first + ", second: " + second);
-    }
+  public void display() {
+    System.out.println("first: " + first + ", second: " + second);
+  }
+
 }

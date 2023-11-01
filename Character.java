@@ -1,96 +1,104 @@
-public abstract class Character implements Movable, Comparable<Character>{
-    protected String name;
-    protected int life;
-    protected int agility;
-    protected int strength;
-    protected int wit;
-    protected final String RPGClass;
-    protected int capacity;
+import java.util.Objects;
 
-    protected Character(String name, String RPGClass) {
-        this.name = name;
-        this.RPGClass = RPGClass;
-        this.life = 50;
-        this.agility = 2;
-        this.strength = 2;
-        this.wit = 2;
-        this.capacity = 0;
-    }
 
-    protected Character(String name, String RPGClass, int capacity) {
-        this.name = name;
-        this.RPGClass = RPGClass;
-        this.life = 50;
-        this.agility = 2;
-        this.strength = 2;
-        this.wit = 2;
-        this.capacity = capacity;
-    }
+public abstract class Character implements Movable, Comparable<Character> {
 
-    @Override
-    public int compareTo(Character other) {
-        if (this.getClass().equals(other.getClass())) {
-            return Integer.compare(this.capacity, other.capacity);
-        }
-        if ((this instanceof Warrior && other instanceof Mage) || (this instanceof Mage && other instanceof Warrior)) {
+  protected final String RPGClass;
 
-            if (this instanceof Warrior && this.capacity % other.capacity == 0) {
-                return 1;
-            } else {
-                return -1;
-            }
-        }
+  protected String name;
+
+  protected int life = 50;
+
+  protected int agility = 2;
+
+  protected int strength = 2;
+
+  protected int wit = 2;
+
+  protected int capacity = 0;
+
+  protected Character(String name, String RPGClass) {
+    this.name = name;
+    this.RPGClass = RPGClass;
+  }
+
+  protected Character(String name, String RPGClass, int capacity) {
+    this.name = name;
+    this.RPGClass = RPGClass;
+    this.capacity = capacity;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getRPGClass() {
+    return RPGClass;
+  }
+
+  public int getLife() {
+    return life;
+  }
+
+  public int getAgility() {
+    return agility;
+  }
+
+  public int getStrength() {
+    return strength;
+  }
+
+  public int getWit() {
+    return wit;
+  }
+
+  public int getCapacity() {
+    return capacity;
+  }
+
+  public void attack(String weapon) {
+    System.out.println(getName() + ": Rrrrrrrrr....");
+  }
+
+  @Override
+  public void moveRight() {
+    System.out.println(getName() + ": moves right");
+  }
+
+  @Override
+  public void moveLeft() {
+    System.out.println(getName() + ": moves left");
+  }
+
+  @Override
+  public void moveForward() {
+    System.out.println(getName() + ": moves forward");
+  }
+
+  @Override
+  public void moveBack() {
+    System.out.println(getName() + ": moves back");
+  }
+
+  public final void unsheathe() {
+    System.out.println(getName() + ": unsheathes his weapon.");
+  }
+
+  @Override
+  public int compareTo(Character character) {
+    if (Objects.equals(this.getRPGClass(), character.getRPGClass())) {
+      if (this.getCapacity() == character.getCapacity()) {
         return 0;
+      }
+      return this.getCapacity() > character.getCapacity() ? 1 : -1;
+    } else {
+      if (Objects.equals(this.getRPGClass(), "Warrior")) {
+        return this.getCapacity() % character.getCapacity() == 0 ? 1 : -1;
+      } else if (Objects.equals(this.getRPGClass(), "Mage")) {
+        return character.getCapacity() % this.getCapacity() == 0 ? -1 : 1;
+      }
     }
-
-    public String getName() {
-        return name;
-    }
-    
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public int getLife() {
-        return life;
-    }
-
-    public int getAgility() {
-        return agility;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public int getWit() {
-        return wit;
-    }
-
-    public String getRPGClass() {
-        return RPGClass;
-    }
-    public void attack(String weapon) {
-        System.out.println(name + ": Rrrrrrrrr....");
-    }
-    public void moveRight(){
-        System.out.println(name + ": moves right");
-    }
-
-    public void moveLeft(){
-        System.out.println(name + ": moves left");
-    }
-
-    public void moveForward(){
-        System.out.println(name + ": moves forward");
-    }
-
-    public void moveBack(){
-        System.out.println(name + ": moves back");
-    }
-
-    public final void unsheathe() {
-        System.out.println(name + ": unsheathes his weapon");
-    }
+    return 0;
+  }
 
 }
